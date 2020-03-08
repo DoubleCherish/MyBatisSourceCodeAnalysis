@@ -157,7 +157,7 @@ public class TestMain(){
 
 ​		--mapper 映射器配置
 
-![]()
+![](https://github.com/DoubleCherish/MyBatisSourceCodeAnalysis/blob/master/configuration.png)
 
 最后Mybatis会将配置中的所有信息组装成为一个Configuration对象供给整个框架使用，可以说初始化就是为了构造Configuration对象。
 
@@ -183,7 +183,7 @@ public class TestMain(){
 
 图示如下：
 
-![]()
+![](https://github.com/DoubleCherish/MyBatisSourceCodeAnalysis/blob/master/step-construct-defaultsqlsessionfactory.png)
 
 下面看看具体代码的分析：
 
