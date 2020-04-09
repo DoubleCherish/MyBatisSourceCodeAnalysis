@@ -55,7 +55,7 @@ public class MainTest {
 
 程序在我电脑上执行的结果如下图：
 
-![]()
+![](https://github.com/DoubleCherish/MyBatisSourceCodeAnalysis/blob/master/DataSource/images/unpooled_demo.PNG)
 
 ​		从上面的执行结果可以看出创建一个新的连接平均耗时 47 ms，那么假设串行获取10000个连接，光获取连接耗时470000ms，7分多钟，不敢想象呀。
 
@@ -104,7 +104,7 @@ public class MainTest {
 
 执行结果如下图：
 
-![]()
+![](https://github.com/DoubleCherish/MyBatisSourceCodeAnalysis/blob/master/DataSource/images/pooled_demo.PNG)
 
 ​		不多说了，一切尽在结果中。由此可知，合理利用系统资源可以大大降低系统耗时，Mybatis的数据库连接池的目的就是降低获取资源耗时，提高资源利用率。
 
@@ -195,7 +195,7 @@ protected void openConnection() throws SQLException {
 
 ​		下面我们就要介绍到核心点了，在Mybatis项目源码下我们可以看到有如下一个包，里面就是Mybatis获取数据源相关类
 
-![]()
+![](https://github.com/DoubleCherish/MyBatisSourceCodeAnalysis/blob/master/DataSource/images/package.png)
 
 ​		从图中可以看出Mybatis的datasource包中主要有三个分类：① jndi  ② pooled ③ unpooled。这三个包分别代表使用jndi获取数据源相关、池化获取数据源相关、非池化获取数据源相关。
 
@@ -203,11 +203,13 @@ protected void openConnection() throws SQLException {
 
 ​		先看一张类的关系图
 
+![](https://github.com/DoubleCherish/MyBatisSourceCodeAnalysis/blob/master/DataSource/images/class_relation.png)
+
 ###### 2.1 UNPOOLED
 
 unpooled包下的类如图所示
 
-![]()
+![](https://github.com/DoubleCherish/MyBatisSourceCodeAnalysis/blob/master/DataSource/images/pooled.png)
 
 下面先概要介绍下各个类的用处：
 
@@ -256,7 +258,7 @@ private Connection doGetConnection(Properties properties) throws SQLException {
 
 pooled的包下的类如下图所示，下面主要讲下PooledDataSource相关源码
 
-![]()
+![](https://github.com/DoubleCherish/MyBatisSourceCodeAnalysis/blob/master/DataSource/images/pooled_p.png)
 
 下面先概要介绍下各个类的用处：
 
@@ -370,7 +372,7 @@ public class PooledDataSource implements DataSource {
 
 ​		好了，以上就是相关类的简要介绍，下面我们进入正题，开始分析PooledDataSource的getConnection()方法，方法稍长，注释一步一步解释，先上一张流程图，对照流程图看代码更清晰，流程图中省略了中断响应的步骤。
 
-![]()
+![](https://github.com/DoubleCherish/MyBatisSourceCodeAnalysis/blob/master/DataSource/images/popConnection.png)
 
 ```java
 public Connection getConnection() throws SQLException {
@@ -534,6 +536,8 @@ if (CLOSE.hashCode() == methodName.hashCode() && CLOSE.equals(methodName)) {
 ```
 
 下面再来分析下pushConnection方法源码，首先先看一张流程图，对照流程图看源码逻辑更清晰。
+
+![](https://github.com/DoubleCherish/MyBatisSourceCodeAnalysis/blob/master/DataSource/images/pushConnection.png)
 
 ```java
 protected void pushConnection(PooledConnection conn) throws SQLException {
